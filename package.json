@@ -3,10 +3,18 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run test -ws --if-present",
+    "lint": "npm run lint -ws --if-present",
+    "build": "npm run build -ws --if-present"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "private": "true",
+  "workspaces": [
+    "backend",
+    "frontend",
+    "shared"
+  ]
 }
