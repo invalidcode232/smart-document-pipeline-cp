@@ -96,6 +96,8 @@ export function validatePipelineGraph(payload) {
       continue;
     }
 
+    // NODE_TYPES specifies the type of acceptable inputs & outputs,
+    // we use this to check for type compatibility here
     const compatible = sourceSpec.outputs.some((outType) => targetSpec.inputs.includes(outType));
 
     if (!compatible) {
@@ -126,6 +128,7 @@ export function validatePipelineGraph(payload) {
       continue;
     }
 
+    // Remove duplicates to check the number of *unique* parent nodes
     const uniqueParents = new Set(incomingEdges.map((e) => e.source));
     if (uniqueParents.size !== 2) {
       errors.push(

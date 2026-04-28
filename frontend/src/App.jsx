@@ -42,7 +42,7 @@ function toSavePayload(nodes, edges, pipelineName) {
             source: edge.source,
             target: edge.target,
         })),
-    }
+    } // JSON payload to be sent to our backend server
 }
 
 export default function App() {
@@ -59,17 +59,18 @@ export default function App() {
         [setNodes],
     )
 
+    // We will use a custom onConnect function to add an edge.id for our database
     const onConnect = useCallback(
         (connection) => {
             setErrors([])
-            setEdges((eds) =>
+            setEdges((edges) =>
                 addEdge(
                     {
                         ...connection,
                         id: `edge-${edgeCounter++}`,
                     },
-                    eds,
-                ),
+                    edges,
+                ), // addEdge **returns** array of updated Edges
             )
         },
         [setEdges],
@@ -133,6 +134,9 @@ export default function App() {
 
             <main className="canvas">
                 <ReactFlow
+                    // We're using styledGraph instead of `nodes` and `edges`since 
+                    // we're giving custom styling for it (red line for errors)
+                    // this styling is handled in applyValidationErrors
                     nodes={styledGraph.styledNodes}
                     edges={styledGraph.styledEdges}
                     onNodesChange={onNodesChange}
