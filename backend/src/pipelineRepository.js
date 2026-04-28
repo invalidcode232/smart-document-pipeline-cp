@@ -78,19 +78,15 @@ export async function savePipelineGraph(payload) {
             pipeline_id,
             edge_id,
             source_node_id,
-            source_handle,
-            target_node_id,
-            target_handle
+            target_node_id
           )
-          VALUES ($1, $2, $3, $4, $5, $6)
+          VALUES ($1, $2, $3, $4)
         `,
         [
           pipelineId,
           edge.id,
           edge.source,
-          edge.sourceHandle || null,
           edge.target,
-          edge.targetHandle || null,
         ],
       )
     }

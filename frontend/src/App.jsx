@@ -41,8 +41,6 @@ function toSavePayload(nodes, edges, pipelineName) {
       id: edge.id,
       source: edge.source,
       target: edge.target,
-      sourceHandle: edge.sourceHandle || null,
-      targetHandle: edge.targetHandle || null,
     })),
   }
 }

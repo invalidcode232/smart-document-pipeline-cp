@@ -25,9 +25,7 @@ CREATE TABLE IF NOT EXISTS pipeline_edges (
   pipeline_id UUID NOT NULL REFERENCES pipelines(id) ON DELETE CASCADE,
   edge_id TEXT NOT NULL,
   source_node_id TEXT NOT NULL,
-  source_handle TEXT NULL,
   target_node_id TEXT NOT NULL,
-  target_handle TEXT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
   UNIQUE (pipeline_id, edge_id),
   FOREIGN KEY (pipeline_id, source_node_id)
