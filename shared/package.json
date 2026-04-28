@@ -1,0 +1,14 @@
+{
+  "name": "@smart-document-pipeline/shared",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "scripts": {
+    "lint": "node --check src/index.js src/nodeTypes.js",
+    "test": "echo \"No shared tests\"",
+    "build": "echo \"No shared build step\""
+  }
+}
