@@ -8,32 +8,6 @@ This repository contains a monorepo implementation of a Smart Document Pipeline 
 - `/frontend`: React + React Flow UI for drag-and-drop pipeline design
 - `/shared`: Canonical node type and data type registry consumed by backend and frontend
 
-## Canonical Node Registry
-
-The canonical registry is defined in:
-
-- `/home/runner/work/smart-document-pipeline/smart-document-pipeline/shared/src/nodeTypes.js`
-
-Both frontend and backend import this exact module to avoid contract drift.
-
-## PostgreSQL Schema
-
-Schema SQL:
-
-- `/home/runner/work/smart-document-pipeline/smart-document-pipeline/backend/db/schema.sql`
-
-Main tables:
-
-- `pipelines`
-- `pipeline_nodes`
-- `pipeline_edges`
-
-Includes:
-
-- FK constraints with cascading deletes
-- Deferrable edge-to-node FK constraints
-- indexes for pipeline and node lookups
-
 ## API: Save / Update Pipeline
 
 ### `POST /api/pipelines`
@@ -89,13 +63,6 @@ Validation failures return:
 ```
 
 Frontend maps `nodeIds` and `edgeIds` to visual highlighting (red border/stroke).
-
-## Implemented Business Rules
-
-1. Type matching across all edges
-2. Document Merger: exactly two incoming edges from distinct parent nodes
-3. DAG enforcement with only one exception:
-   - cycles are rejected unless they include `Human Review -> Text Correction`
 
 ## Commands
 
